@@ -13,4 +13,5 @@ data class Note ( // Ceci sont les attributs ou propriétés de la table ou clas
     @ColumnInfo(name = "date") /* Idem */ val date: String?
 
 
-) : java.io.Serializable
+) : java.io.Serializable // La data class note peut être convertie en une séquence d'octets qui peut être
+                        // enregistrée dans un fichier ou transmise sur un réseau

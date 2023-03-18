@@ -24,8 +24,8 @@ import java.util.Formatter
 
 class MainActivity : AppCompatActivity(), NotesAdapter.NotesClickListener, PopupMenu.OnMenuItemClickListener {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var database: NoteDatabase
+    private lateinit var binding: ActivityMainBinding // Les données qui sont dans le RecyClerView
+    private lateinit var database: NoteDatabase // La base ded données
     lateinit var viewModel: NoteViewModel
     lateinit var adapter: NotesAdapter
     lateinit var selectedNote: Note

@@ -16,12 +16,12 @@ interface NoteDao {
     suspend fun insert(note :Note)
 
     @Delete
-    suspend fun delete(note: Note)
+    suspend fun delete(note: Note) // La fonction de suppression de la note
 
     @Query("SELECT * FROM notes_table ORDER BY id ASC")
     fun getAllNotes() : LiveData<List<Note>> // Grace au LiveData on peut voir les données en temps reel dans l'application
 
-    @Query("UPDATE notes_table SET title = :title, note = :note WHERE id = :id")
-    suspend fun update(id: Int?, title: String?, note: String?)
+    @Query("UPDATE notes_table SET title = :title, note = :note WHERE id = :id") // La requete de modification de la note selectionner
+    suspend fun update(id: Int?, title: String?, note: String?) // La fonction prend 3 arguments
 
 }

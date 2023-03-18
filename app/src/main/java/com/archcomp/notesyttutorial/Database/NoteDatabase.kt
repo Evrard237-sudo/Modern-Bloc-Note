@@ -15,6 +15,11 @@ abstract class NoteDatabase : RoomDatabase() {
 
     companion object{
 
+        /**
+         * elle définit un objet compagnon (companion object) pour la classe NoteDatabase qui fournit
+         * une méthode de création d'instances de la base de données
+         * */
+
         @Volatile
         private var INSTANCE: NoteDatabase? = null
 
