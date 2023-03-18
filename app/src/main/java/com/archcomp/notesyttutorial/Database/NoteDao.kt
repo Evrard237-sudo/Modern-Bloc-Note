@@ -9,7 +9,7 @@ import androidx.room.Query
 import com.archcomp.notesyttutorial.Models.Note
 
 // Ceci est la partie controller du projet
-@Dao
+@Dao // Data Access Object
 interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE/*indique que si une entrée avec la même clé primaire existe déjà dans la base de données, elle sera remplacée par la nouvelle entrée*/)

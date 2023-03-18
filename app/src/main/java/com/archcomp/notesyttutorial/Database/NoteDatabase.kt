@@ -23,6 +23,12 @@ abstract class NoteDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: NoteDatabase? = null
 
+        /*
+        * context est une variable qui représente le contexte de l'activité
+        *  ou de l'application Android. Le contexte est une interface vers les
+        * informations globales de l'application, telles que les ressources, l'accès
+        * aux fichiers et aux bases de données, les préférences partagées, etc.
+        * */
         fun getDatabase(context: Context) : NoteDatabase{
 
             /**
