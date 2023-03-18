@@ -19,7 +19,7 @@ class AddNote : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding
 
-    private lateinit var note: Note
+    private lateinit var note: Note // On prend la
     private lateinit var old_note: Note
     var isUpdate = false
 

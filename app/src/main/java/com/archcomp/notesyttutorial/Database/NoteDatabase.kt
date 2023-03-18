@@ -25,6 +25,16 @@ abstract class NoteDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context) : NoteDatabase{
 
+            /**
+             * Cette fonction est une méthode statique qui permet d'obtenir une instance de la classe NoteDatabase.
+             * Elle prend en entrée un objet de type Context, qui est utilisé pour accéder aux ressources
+             * et aux services du système Android, et elle renvoie une instance de la classe NoteDatabase.
+             * La méthode utilise la méthode synchronized() pour garantir que la création
+             * de la base de données se fait de manière thread-safe. Elle crée ensuite une
+             * instance de Room.databaseBuilder() en utilisant le nom de la classe NoteDatabase,
+             * le nom de la base de données et la version de la base de données.
+             * */
+
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -32,6 +42,7 @@ abstract class NoteDatabase : RoomDatabase() {
                     DATABASE_NAME
                 ).build()
 
+                // Bref elle recupere l'instance de Note pour crée la base de données
                 INSTANCE = instance
 
                 instance

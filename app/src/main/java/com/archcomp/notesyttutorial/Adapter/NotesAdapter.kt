@@ -14,40 +14,80 @@ import kotlin.random.Random
 
 class NotesAdapter(private val context: Context, val listener: NotesClickListener) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
-    private val NotesList = ArrayList<Note>()
-    private val fullList = ArrayList<Note>()
+    /**
+     * est une classe qui hérite de la classe RecyclerView.Adapter<NotesAdapter.NoteViewHolder>.
+     * Cette classe est utilisée pour afficher une liste de notes dans une RecyclerView dans
+     * l'interface utilisateur.
+     * Le constructeur de la classe prend deux arguments :
+     * context: le contexte dans lequel l'adaptateur est utilisé. Cela peut être utilisé pour accéder aux ressources de l'application.
+     * listener: un NotesClickListener qui est utilisé pour détecter les clics sur les éléments de la liste.
+     * contient une classe interne NoteViewHolder qui hérite de la classe RecyclerView.ViewHolder
+     * */
 
+    private val NotesList = ArrayList<Note>() // On crée une liste d'objet de Note
+    private val fullList = ArrayList<Note>() // Idem
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
+        /**
+         * La méthode onCreateViewHolder de la classe NotesAdapter est appelée lorsque
+         * la vue RecyclerView doit créer une nouvelle vue pour afficher les éléments
+         * de la liste. Cette méthode crée et retourne une instance de la classe interne
+         * NoteViewHolder qui contient les éléments de la vue.*/
         return NoteViewHolder(
+            /*Cette ligne de code crée une vue en utilisant le fichier de layout R.layout.list_item
+            en tant que modèle, en utilisant le LayoutInflater associé au contexte spécifié.*/
             LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
         )
     }
 
     override fun getItemCount(): Int {
-        return NotesList.size // Retourne la ombre de note
+        return NotesList.size // Retourne la taille de la Note
     }
 
 
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val currentNote = NotesList[position]
-        holder.title.text = currentNote.title
-        holder.title.isSelected = true
+        /*
+        * Cette méthode est appelée par la classe RecyclerView pour lier les données
+        * de la liste des notes (représentées par l'objet Note) avec les vues correspondantes
+        * (représentées par l'objet NoteViewHolder).
+        * */
+        val currentNote = NotesList[position] // Definit l'index de la note
+        holder.title.text = currentNote.title // On pend le texte retourner par l'input de titre
+        holder.title.isSelected = true // On verifie si elle est selectionnée
 
-        holder.note.text = currentNote.note
-        holder.date.text = currentNote.date
-        holder.date.isSelected = true
+        holder.note.text = currentNote.note // On prend le texte retourné par l'input de la note
+        holder.date.text = currentNote.date // On prend la date retourner par le label Date
+        holder.date.isSelected = true // On verifie si la date est selectionnée
 
         holder.notes_layout.setCardBackgroundColor(holder.itemView.resources.getColor(randomColor(), null))
+        /**
+         * Dans cette ligne de code, on définit la couleur de fond d'une carte (CardView) qui affiche
+         * une note dans la vue RecyclerView. Cette couleur est choisie aléatoirement
+         * à partir d'un ensemble de couleurs prédéfinies.
+         * La méthode setCardBackgroundColor() est appelée sur l'objet notes_layout qui représente
+         * le conteneur de la carte dans la vue. Cette méthode prend en entrée un paramètre qui
+         * est la couleur à définir sous forme d'entier.
+         * La couleur est déterminée en appelant la méthode randomColor()
+         * qui renvoie un entier correspondant à la position d'une couleur dans un tableau de couleurs.
+         * */
 
         holder.notes_layout.setOnClickListener{
+
+            /**
+             * Dans cette ligne de code, on définit le comportement à exécuter lorsqu'un utilisateur
+             * clique sur la vue qui affiche une note dans la vue RecyclerView.
+             * La méthode setOnClickListener() est appelée sur l'objet notes_layout qui représente
+             * la vue qui contient la note dans la vue RecyclerView.
+             * */
 
             listener.onitemClicked(NotesList[holder.adapterPosition])
 
         }
 
         holder.notes_layout.setOnLongClickListener {
+            //Cette ligne de code permet de définir un comportement spécifique lorsque l'utilisateur
+            // effectue un clic long sur une vue dans la liste des notes.
             listener.onlongitemClicked(NotesList[holder.adapterPosition], holder.notes_layout)
             true
         }

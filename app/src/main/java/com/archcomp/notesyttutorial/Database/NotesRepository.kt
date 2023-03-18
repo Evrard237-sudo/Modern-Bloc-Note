@@ -5,6 +5,11 @@ import com.archcomp.notesyttutorial.Models.Note
 
 class NotesRepository(private val noteDao: NoteDao) {
 
+    /**
+     * Est un design pattern stipulant que chaque requete
+     * qui doit interagir avec la bd son ecrit dans une classe
+     */
+
     val allNotes : LiveData<List<Note>> = noteDao.getAllNotes()
 
     suspend fun insert(note: Note){
